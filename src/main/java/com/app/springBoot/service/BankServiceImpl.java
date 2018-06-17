@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.springBoot.dao.BankDAO;
-import com.app.springBoot.exception.BankNotFoundException;
+import com.app.springBoot.exception.ExceptionInBank;
 import com.app.springBoot.pojo.Bank;
 
 
@@ -17,13 +17,13 @@ public class BankServiceImpl implements BankService {
 	private BankDAO bankDAO;
 
 	@Override
-	public Bank createBank(Bank bank) throws BankNotFoundException {
+	public Bank createBank(Bank bank) throws ExceptionInBank {
 		// TODO Auto-generated method stub
 		return bankDAO.save(bank);
 	}
 
 	@Override
-	public Bank getBankDetails(long bankId) throws BankNotFoundException {
+	public Bank getBankDetails(long bankId) throws ExceptionInBank {
 		// TODO Auto-generated method stub
 		
 		Optional<Bank> bankslist = bankDAO.findById(bankId);
@@ -31,7 +31,7 @@ public class BankServiceImpl implements BankService {
 				return bankslist.get();
 		}
 		else {
-			throw new BankNotFoundException("Bank creation failed");		
+			throw new ExceptionInBank("BankId Not Found");		
 		}
 		
 	}

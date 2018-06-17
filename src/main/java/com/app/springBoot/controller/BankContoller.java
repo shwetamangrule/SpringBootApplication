@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.springBoot.exception.BankNotFoundException;
+import com.app.springBoot.exception.ExceptionInBank;
 import com.app.springBoot.pojo.Bank;
 import com.app.springBoot.service.BankService;
 
@@ -31,7 +30,7 @@ public class BankContoller {
 	}
 	
 	@PostMapping("/addbank")
-	public int createBank(@RequestBody Bank bank) throws BankNotFoundException {
+	public int createBank(@RequestBody Bank bank) throws ExceptionInBank {
 		bankService.createBank(bank);
 		return 200;
 	}
